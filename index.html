@@ -809,15 +809,6 @@ function toggleMini(){
   mini=!mini;
   const p=document.getElementById('player');
   p.classList.toggle('mini',mini);
-  if(mini){
-    p.addEventListener('click',expandOnce);
-  }
-}
-function expandOnce(){
-  const p=document.getElementById('player');
-  mini=false;
-  p.classList.remove('mini');
-  p.removeEventListener('click',expandOnce);
 }
 renderTL();
 
