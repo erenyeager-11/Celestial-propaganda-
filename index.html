@@ -239,7 +239,7 @@ section{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction
 #player.mini{width:52px;height:52px;padding:0;border-radius:50%;display:flex;align-items:center;justify-content:center;overflow:hidden}
 #player.mini .player-body{display:none}
 .mini-icon{display:none;font-size:20px;color:var(--accent);pointer-events:none;cursor:none}
-#player.mini .mini-icon{display:block}
+#player.mini .mini-icon{display:flex;align-items:center;justify-content:center;position:absolute;inset:0;z-index:10;width:100%;height:100%}
 .player-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
 .player-badge{font-size:8px;letter-spacing:4px;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:5px}
 .pulse-dot{width:5px;height:5px;border-radius:50%;background:var(--accent);animation:pulse 1.6s ease infinite}
@@ -808,9 +808,18 @@ document.getElementById('prog-wrap').addEventListener('click',e=>{
 
 function toggleMini(){
   mini=!mini;
-  document.getElementById('player').classList.toggle('mini',mini);
+  const p=document.getElementById('player');
+  p.classList.toggle('mini',mini);
+  if(mini){
+    p.addEventListener('click',expandOnce);
+  }
 }
-
+function expandOnce(){
+  const p=document.getElementById('player');
+  mini=false;
+  p.classList.remove('mini');
+  p.removeEventListener('click',expandOnce);
+}
 renderTL();
 
 // ── FADE-IN ON SCROLL ────────────────────────
