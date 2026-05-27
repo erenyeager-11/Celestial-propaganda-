@@ -388,7 +388,7 @@ footer p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px
 
 <!-- MUSIC PLAYER -->
 <div id="player">
-  <div class="mini-icon" onclick="toggleMini()">♪</div>
+  <div class="mini-icon" onclick="toggleMini()" style="cursor:none;width:52px;height:52px;display:flex;align-items:center;justify-content:center;position:absolute;inset:0">♪</div>
   <div class="player-body">
     <div class="player-top">
       <div class="player-badge"><span class="pulse-dot"></span>Now Playing</div>
@@ -725,7 +725,10 @@ let tracks=[
   {name:"Song 15", url:"songs/song15.mp3"},
 ],cur=0,playing=false,shuffle=false,repeat=false,mini=false;
 
-setTimeout(()=>document.getElementById('player').classList.add('up'),1800);
+setTimeout(()=>{
+  document.getElementById('player').classList.add('up');
+  loadTrack(0);
+},1800);
 
 function loadFiles(files){
   Array.from(files).forEach(f=>{
